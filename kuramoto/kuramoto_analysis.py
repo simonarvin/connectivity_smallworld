@@ -125,7 +125,7 @@ class Analyser:
                     lower_index = index
                     color_index += 1
 
-            except Exception as e:
+            except: #catch last plot:
 
                 x, y = np.mean(longs, axis = 1)[lower_index:], np.mean(coherence, axis = 1)[lower_index:]
 
