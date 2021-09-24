@@ -1,17 +1,15 @@
 import json
-import matplotlib.pyplot as plt
 import numpy as np
-from scipy import stats
-import matplotlib.ticker as ticker
-
-from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
 import matplotlib.ticker
-import ppscore as pps
-import pandas as pd
 import cycler
 
-import pathlib
+from scipy.optimize import curve_fit
+import pandas as pd
+import ppscore as pps
 from dominance_analysis import Dominance
+
+import pathlib
 
 coupling = 3 #Kuramoto's coupling parameter. Data-set includes couplings = [1, 2, 2.5, 3, 4]
 data_name = f"sw_kuramoto_coupling{coupling}"
@@ -30,7 +28,7 @@ def fit(x, y, real = False): #fitting function
     betas = np.logspace(np.log10(0.0005), np.log10(10), 70)
     p0 = [np.amax(y), np.median(x), 2, np.amin(y)] # initial guess for scipy.curve_fit
     popt, pcov = curve_fit(logifunc, x, y, p0, method = "trf")
-    if real: #not error_margin. Print fitted parameters
+    if real: #excludes error margins. Print fitted parameters
         print(f"fitted parameters:\n{popt}")
 
     return betas, logifunc(betas, *popt)
@@ -68,7 +66,6 @@ class Analyser:
         incr_variable_rsquare = dominance_regression.incremental_rsquare()
         print(f"\ndominance analysis:\n{incr_variable_rsquare}\n")
 
-        longs_sems = [stats.sem(long) for long in longs]
         lower_index = 0
         color_index = 0
 
@@ -107,7 +104,7 @@ class Analyser:
                     ax.plot(x_, y_, c=colours[color_index], lw=1)
 
                     #plot means +- std
-                    ax.errorbar(x, y, yerr = coherence_std[lower_index:index], fmt='o', c=colours[color_index],markersize=2, lw = 1, capsize = 1.5) #xerr=longs_sems[lower_index:index],
+                    ax.errorbar(x, y, yerr = coherence_std[lower_index:index], fmt='o', c=colours[color_index],markersize=2, lw = 1, capsize = 1.5)
 
                     longs_scope = np.array(longs)[lower_index:index,:]
                     coherence_scope =  np.array(coherence)[lower_index:index,:]
