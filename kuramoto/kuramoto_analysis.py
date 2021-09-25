@@ -10,8 +10,17 @@ import ppscore as pps
 from dominance_analysis import Dominance
 
 import pathlib
+import sys
 
-coupling = 3 #Kuramoto's coupling parameter. Data-set includes couplings = [1, 2, 2.5, 3, 4]
+try:
+    if "." in sys.argv[1]:
+        coupling = float(sys.argv[1])
+    else:
+        coupling = int(sys.argv[1])
+except:
+    coupling = 3 #Kuramoto's coupling parameter. Data-set includes couplings = [1, 2, 2.5, 3, 4]
+
+print(f"coupling: {coupling}")
 data_name = f"sw_kuramoto_coupling{coupling}"
 base_path = f"{pathlib.Path(__file__).parent.absolute()}/data"
 data_path = f"{base_path}/{data_name}.json"
@@ -53,8 +62,8 @@ class Analyser:
         raw_coherence = [[coh[-1500:] for coh in entry["phase_cohs"]] for entry in self.lines]
         coherence_std = [np.std(coh) for coh in coherence] #OBS, STD
 
-        #longs = [np.mean(entry["Ns"])/entry["nodes"] for entry in self.lines]
-        longs = [np.array(entry["Ns"])/entry["nodes"] for entry in self.lines]
+        #longs = [np.mean(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
+        longs = [np.array(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
         shorts = [entry["shortrange_pernode"] for entry in self.lines]
 
         #check dominance of variables g, k and r onto the metastability r_std

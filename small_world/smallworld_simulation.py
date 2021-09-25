@@ -25,10 +25,8 @@ def C_L(G, type = 0):
 
 
 longrange_probabilities = np.logspace(np.log10(0.0001), np.log10(1), 12)
-longrange_probabilities = np.append(longrange_probabilities, [1.5, 2])
 
-shortrange_pernode = [5, 10, 30, 50, 70, 90, 100]#np.arange(lower, upper, 5)
-
+shortrange_pernode = [5, 10, 30, 50, 70, 90, 100]
 max_longrange = [10, 50, 200]
 
 start_at_trial = 0
@@ -112,7 +110,7 @@ for T in max_longrange:
                 # dict = {
                 # "randint": int(total_trials_samples),
                 # "nodes": int(nodes),
-                # "beta": float(u),
+                # "longrange_probability": float(u),
                 # "shortrange_pernode": float(shortpernode),
                 # "omega": float(omega),
                 # "L_rand": float(L_rand),
