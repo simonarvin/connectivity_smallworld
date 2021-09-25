@@ -32,7 +32,7 @@ Keisuke Yonehara, keisuke.yonehara@dandrite.au.dk
 - [Installation](#installation)
 - [Tests](#tests)
 - [Requisites](#requisites)
-
+- [Authors](#authors)
 
 ## Installation
 
@@ -76,6 +76,7 @@ Alternatively, see [the requisites list](#requisites).
 ```python kuramoto/kuramoto_analysis.py```
 
 ----
+
 ## Requisites:
 - Python 3.x (https://www.python.org/)
 - networkx 2.6.x (https://networkx.org/)
@@ -87,6 +88,11 @@ Alternatively, see [the requisites list](#requisites).
 
 > e.g., ```pip install networkx==2.6.x```
 
+## Authors:
+
+- Simon Arvin, MD Hons candidate | sarv@dandrite.au.dk
+- Andreas Nørgaard Glud, MD PhD | angl@clin.au.dk
+- Keisuke Yonehara, DVM PhD | keisuke.yonehara@dandrite.au.dk
 
 ----
 
