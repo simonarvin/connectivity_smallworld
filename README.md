@@ -29,9 +29,9 @@ Keisuke Yonehara, keisuke.yonehara@dandrite.au.dk
 - [Kuramoto's coupled oscillators on the small-world graph](https://github.com/simonarvin/connectivity_smallworld/tree/main/kuramoto)
 
 **Set-up:**
-- [Installation](##installation)
-- [Tests](##tests)
-- [Requisites](##requisites)
+- [Installation](#installation)
+- [Tests](#tests)
+- [Requisites](#requisites)
 
 
 ## Installation
