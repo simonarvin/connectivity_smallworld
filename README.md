@@ -20,3 +20,11 @@ Keisuke Yonehara, keisuke.yonehara@dandrite.au.dk
 **Contents:**
 - Generative small-world graphs + topological analysis
 - Kuramoto's coupled oscillators on the small-world graph
+
+**Requisites:**
+- Python 3.x (https://www.python.org/)
+- networkx (https://networkx.org/)
+- numpy (https://numpy.org/)
+- scipy (https://www.scipy.org/)
+- pandas (https://pandas.pydata.org/)
+- dominance-analysis (https://github.com/dominance-analysis/dominance-analysis)
