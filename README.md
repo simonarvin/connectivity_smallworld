@@ -90,9 +90,9 @@ Alternatively, see [the requisites list](#requisites).
 
 ## Authors:
 
-- Simon Arvin, MD Hons candidate | sarv@dandrite.au.dk
-- Andreas Nørgaard Glud, MD PhD | angl@clin.au.dk
-- Keisuke Yonehara, DVM PhD | keisuke.yonehara@dandrite.au.dk
+- Simon Arvin, MD Hons candidate (sarv@dandrite.au.dk)
+- Andreas Nørgaard Glud, MD PhD (angl@clin.au.dk)
+- Keisuke Yonehara, DVM PhD (keisuke.yonehara@dandrite.au.dk)
 
 ----
 
