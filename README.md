@@ -24,10 +24,57 @@ Keisuke Yonehara, keisuke.yonehara@dandrite.au.dk
 - [Generative small-world graphs + topological analysis](https://github.com/simonarvin/connectivity_smallworld/tree/main/small_world)
 - [Kuramoto's coupled oscillators on the small-world graph](https://github.com/simonarvin/connectivity_smallworld/tree/main/kuramoto)
 
-**Requisites:**
+> Both directories contain raw datasheets (see '*/data/'*)
+
+**Installation**
+
+Download the datasets and simulation codes by cloning the repository:
+```
+git clone https://github.com/simonarvin/connectivity_smallworld.git
+```
+
+You may want to use a Conda or Python virtual environment to test this code, to avoid mixing up with your system dependencies.
+
+Using pip and a virtual environment:
+
+```python -m venv venv```
+
+```source venv/bin/activate```
+
+```(venv) pip install .```
+
+> Remember to ```cd [path]``` to the root dataset directory.
+> 
+> [How to create a virtual environment in Windows](https://docs.python.org/3/library/venv.html).
+
+Alternatively, see [the requisites list](Requisites).
+
+**Tests**
+
+- *Reproduce small-world data:*
+
+```python small_world/smallworld_simulation.py```
+
+- *Reproduce small-world figures:*
+
+```python small_world/smallworld_analysis.py```
+
+- *Reproduce Kuramoto data:*
+
+```python kuramoto/kuramoto_simulation.py```
+
+- *Reproduce Kuramoto figures:*
+
+```python kuramoto/kuramoto_analysis.py```
+
+----
+#### Requisites:
 - Python 3.x (https://www.python.org/)
-- networkx (https://networkx.org/)
-- numpy (https://numpy.org/)
-- scipy (https://www.scipy.org/)
-- pandas (https://pandas.pydata.org/)
-- dominance-analysis (https://github.com/dominance-analysis/dominance-analysis)
+- networkx 2.6.x (https://networkx.org/)
+- numpy 1.20.x (https://numpy.org/)
+- scipy 1.5.0 (https://www.scipy.org/)
+- pandas 1.3.x (https://pandas.pydata.org/)
+- dominance-analysis 1.1.x (https://github.com/dominance-analysis/dominance-analysis)
+- ppscore 1.2.0 (https://github.com/8080labs/ppscore/)
+
+> e.g., ```pip install networkx==2.6.x```
