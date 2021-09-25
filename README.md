@@ -55,7 +55,7 @@ Using pip and a virtual environment:
 > 
 > [How to create a virtual environment in Windows](https://docs.python.org/3/library/venv.html).
 
-Alternatively, see [the requisites list](Requisites).
+Alternatively, see [the requisites list](#requisites).
 
 ## Tests
 
@@ -86,3 +86,17 @@ Alternatively, see [the requisites list](Requisites).
 - ppscore 1.2.0 (https://github.com/8080labs/ppscore/)
 
 > e.g., ```pip install networkx==2.6.x```
+
+
+----
+
+<p align="center">
+    <img src="https://github.com/simonarvin/eyeloop/blob/master/misc/imgs/aarhusuniversity.svg?raw=true" align="center" height="40">&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://github.com/simonarvin/eyeloop/blob/master/misc/imgs/dandrite.svg?raw=true" align="center" height="40">&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://github.com/simonarvin/connectivity_smallworld/blob/main/misc/CENSE.jpg" align="center" height="40">
+</p>
+<p align="center">
+    <a href="http://www.yoneharalab.com">
+    <img src="https://github.com/simonarvin/eyeloop/blob/master/misc/imgs/yoneharalab.svg?raw=true" align="center" height="18">&nbsp;&nbsp;&nbsp;&nbsp;
+    </a>
+    </p>
