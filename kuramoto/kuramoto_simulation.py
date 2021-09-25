@@ -5,7 +5,7 @@ import sys
 import time
 import pathlib
 
-sys.path.insert(0,'../small_world')
+sys.path.insert(0,'./small_world')
 import nx_funcs
 import networkx as nx
 from kuramoto import Kuramoto
