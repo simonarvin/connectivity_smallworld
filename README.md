@@ -1,5 +1,8 @@
 Full datasets and simulation code
 ----
+<p align="center">
+  <img src="https://github.com/simonarvin/connectivity_smallworld/blob/main/misc/smallworld.svg" />
+</p>
 
 ### Short- and long-range connections differentially modulate the small-world network’s dynamics and state
 
