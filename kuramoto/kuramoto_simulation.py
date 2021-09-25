@@ -92,14 +92,14 @@ for coupling in couplings:
                         G, longrange_connections, _, _ = nx_funcs.arvin_watts_strogatz_graph(n = nodes, k = k, T = T, u = u)
                         phase_cohs.append(kuramoto(G, coupling))
 
-                        longrange_connections_arr[i] = longrange_connections
+                        longrange_connections_arr[sample] = longrange_connections
                         print(f"data appended, {sample}/{total_trials_samples}")
 
                     #pack dictionary of data for logging
                     dict = {
                     "kuramoto_time": kuramoto_time,
                     "kuramoto_dt" : kuramoto_dt,
-                    "sample_range": int(total_trials_samples),
+                    "samples": int(total_trials_samples),
                     "nodes": int(nodes),
                     "longrange_probability": float(u),
                     "max_longrange": int(T),
