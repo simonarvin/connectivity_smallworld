@@ -20,13 +20,21 @@ Keisuke Yonehara, keisuke.yonehara@dandrite.au.dk
 
 **doi:** TBA
 
-**Contents:**
+----
+
+## Contents:
+
+**Datasheets and simulation code:**
 - [Generative small-world graphs + topological analysis](https://github.com/simonarvin/connectivity_smallworld/tree/main/small_world)
 - [Kuramoto's coupled oscillators on the small-world graph](https://github.com/simonarvin/connectivity_smallworld/tree/main/kuramoto)
 
-> Both directories contain raw datasheets (see '*/data/'*)
+**Set-up:**
+- [Installation](##installation)
+- [Tests](##tests)
+- [Requisites](##requisites)
 
-**Installation**
+
+## Installation
 
 Download the datasets and simulation codes by cloning the repository:
 ```
@@ -49,7 +57,7 @@ Using pip and a virtual environment:
 
 Alternatively, see [the requisites list](Requisites).
 
-**Tests**
+## Tests
 
 - *Reproduce small-world data:*
 
@@ -68,7 +76,7 @@ Alternatively, see [the requisites list](Requisites).
 ```python kuramoto/kuramoto_analysis.py```
 
 ----
-#### Requisites:
+## Requisites:
 - Python 3.x (https://www.python.org/)
 - networkx 2.6.x (https://networkx.org/)
 - numpy 1.20.x (https://numpy.org/)
