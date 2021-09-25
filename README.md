@@ -18,8 +18,8 @@ Keisuke Yonehara, keisuke.yonehara@dandrite.au.dk
 **doi:** TBA
 
 **Contents:**
-- Generative small-world graphs + topological analysis
-- Kuramoto's coupled oscillators on the small-world graph
+- [Generative small-world graphs + topological analysis](https://github.com/simonarvin/connectivity_smallworld/tree/main/small_world)
+- [Kuramoto's coupled oscillators on the small-world graph](https://github.com/simonarvin/connectivity_smallworld/tree/main/kuramoto)
 
 **Requisites:**
 - Python 3.x (https://www.python.org/)
