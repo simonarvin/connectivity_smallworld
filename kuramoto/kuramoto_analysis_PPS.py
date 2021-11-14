@@ -50,6 +50,7 @@ class Analyser:
         #longs = [np.mean(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
         longs = [np.array(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
         shorts = [entry["shortrange_pernode"] for entry in self.lines]
+        #print(np.unique(shorts))
 
         #check dominance of variables g, h and r onto the metastability r_std
         stack = np.mean(np.array(longs),axis=1), np.array(shorts),  np.mean(np.array(coherence), axis=1), np.array(coherence_std),
@@ -66,7 +67,7 @@ class Analyser:
         pps_ = []
 
         for index, short in enumerate(shorts):
-
+            
             try:
                 if short != shorts[index + 1]:
 
@@ -87,8 +88,9 @@ class Analyser:
 
                     print(f"\npredictive score: {predictive_score['ppscore']}\n")
 
+
                     lower_index = index
-                    color_index += 1
+
                     gs.append(short)
                     pps_.append(predictive_score['ppscore'])
 
@@ -114,6 +116,7 @@ class Analyser:
 
         pps_ = [x for _, x in sorted(zip(gs, pps_), key=lambda pair: pair[0])]
         gs.sort()
+        print(gs)
 
         slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(gs, pps_)
         print("PPS linear fit: ")

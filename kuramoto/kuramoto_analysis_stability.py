@@ -37,7 +37,7 @@ class Analyser:
 
     def plot(self):
         fig, axs = plt.subplots(nrows = 2, ncols = 4, figsize=(2 * 4, 2*2), sharey=True)
-        fig2, ax2 = plt.subplots(nrows = 1, ncols = 1, figsize=(2, 2))
+        fig2, ax2 = plt.subplots(nrows = 1, ncols = 1, figsize=(2.3, 2.5))
 
 
         longrange_probabilities = np.logspace(np.log10(0.0001), np.log10(1), 9)
@@ -101,10 +101,13 @@ class Analyser:
 
             ax.set_xscale("log")
 
-        
-        attraction_diff = attractionmaps[2].T - attractionmaps[0].T
+
+        attraction_diff = attractionmaps[0].T - attractionmaps[2].T
         ax2.errorbar(coherences, np.mean(attraction_diff, axis = 1), yerr=stats.sem(attraction_diff, axis = 1), fmt=".-", color = "#E33237")
-        ax2.set_yticks([3, 0, -1])
+
+        attraction_diff = attractionmaps[0].T - attractionmaps[1].T
+        ax2.errorbar(coherences, np.mean(attraction_diff, axis = 1), yerr=stats.sem(attraction_diff, axis = 1), fmt=".--", color = "#1C9E77")
+        ax2.set_yticks([-3, 0, 1])
         ax2.set_xticks([0, .25, .5, .75, 1])
 
 
