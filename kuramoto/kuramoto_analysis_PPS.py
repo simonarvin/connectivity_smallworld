@@ -24,7 +24,6 @@ print(f"coupling: {coupling}")
 data_name = f"sw_kuramoto_coupling{coupling}_suppl"
 base_path = f"{pathlib.Path(__file__).parent.absolute()}/data"
 data_path = f"{base_path}/{data_name}.json"
-colours = ["#E33237", "#1C9E77", "#2E3192"]
 
 def linfunc(x, A, B):
 
@@ -52,19 +51,19 @@ class Analyser:
         longs = [np.array(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
         shorts = [entry["shortrange_pernode"] for entry in self.lines]
 
-        #check dominance of variables g, k and r onto the metastability r_std
+        #check dominance of variables g, h and r onto the metastability r_std
         stack = np.mean(np.array(longs),axis=1), np.array(shorts),  np.mean(np.array(coherence), axis=1), np.array(coherence_std),
         dominance_matrix = np.vstack(stack).T
-        pandas_matrix = pd.DataFrame(dominance_matrix, columns = ['g', 'k', 'r', 'r_std'])
+        pandas_matrix = pd.DataFrame(dominance_matrix, columns = ['g', 'h', 'r', 'r_std'])
 
         dominance_regression=Dominance(data = pandas_matrix,target = 'r_std',objective=1)
         incr_variable_rsquare = dominance_regression.incremental_rsquare()
         print(f"\ndominance analysis:\n{incr_variable_rsquare}\n")
 
         lower_index = 0
-        color_index = 0
-        gs=[]
-        pps_=[]
+
+        gs = []
+        pps_ = []
 
         for index, short in enumerate(shorts):
 
@@ -117,7 +116,9 @@ class Analyser:
         gs.sort()
 
         slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(gs, pps_)
+        print("PPS linear fit: ")
         print(slope, intercept, r_value, p_value)
+
         ax_metastability.plot(np.linspace(0, -intercept/slope, 50), linfunc(np.linspace(0, -intercept/slope, 50), slope, intercept),"--", color="#F98E23")
         ax_metastability.scatter(gs, pps_, color="#F98E23", s=4)
         ax_metastability.set_ylim(0,1)

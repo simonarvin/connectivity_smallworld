@@ -66,10 +66,10 @@ class Analyser:
         longs = [np.array(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
         shorts = [entry["shortrange_pernode"] for entry in self.lines]
 
-        #check dominance of variables g, k and r onto the metastability r_std
+        #check dominance of variables g, h and r onto the metastability r_std
         stack = np.mean(np.array(longs),axis=1), np.array(shorts),  np.mean(np.array(coherence), axis=1), np.array(coherence_std),
         dominance_matrix = np.vstack(stack).T
-        pandas_matrix = pd.DataFrame(dominance_matrix, columns = ['g', 'k', 'r', 'r_std'])
+        pandas_matrix = pd.DataFrame(dominance_matrix, columns = ['g', 'h', 'r', 'r_std'])
 
         dominance_regression=Dominance(data = pandas_matrix,target = 'r_std',objective=1)
         incr_variable_rsquare = dominance_regression.incremental_rsquare()
