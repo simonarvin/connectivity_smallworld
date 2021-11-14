@@ -8,7 +8,7 @@ author: Fabrizio Damicelli
 
 class Kuramoto:
 
-    def __init__(self, coupling=1, dt=0.01, T=10, n_nodes=None, natfreqs=None):
+    def __init__(self, coupling=1, dt=0.01, T=10, n_nodes=None, natfreqs=None, coherence = 0):
         '''
         coupling: float
             Coupling strength. Default = 1. Typical values range between 0.4-2
@@ -34,6 +34,7 @@ class Kuramoto:
         self.dt = dt
         self.T = T
         self.coupling = coupling
+        self.coherence = coherence
 
 
         if natfreqs is not None:
@@ -49,7 +50,12 @@ class Kuramoto:
         '''
         Random initial random angles (position, "theta").
         '''
-        return 2 * np.pi * np.random.random(size=self.n_nodes)
+        angles = np.zeros(self.n_nodes, dtype=np.float64)
+        for index, _ in enumerate(angles):
+            rnd = np.random.random()
+            if rnd > self.coherence:
+                angles[index] = 2 * np.pi * np.random.random()
+        return angles#2 * np.pi * np.random.random(size=self.n_nodes)
 
     def derivative(self, angles_vec, t, adj_mat):
         '''
