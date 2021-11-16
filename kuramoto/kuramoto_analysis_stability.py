@@ -75,6 +75,7 @@ class Analyser:
             elif i == 3:
                 #colorbar
                 cb = fig_stability.colorbar(c, ax = ax, ticks = [np.min(comb_heat), np.max(comb_heat)])
+                continue
 
             elif i == 4:
                 #H = 10 vs H = 50
@@ -89,8 +90,11 @@ class Analyser:
                 #H = 10 vs H = 100
                 ax.set_title(f"$H = 10 v 100$", fontsize = 10)
                 ax.pcolor(longrange_probabilities, coherences, diff3[:-1,:-1], vmin = np.min(comb_diff), vmax=np.max(comb_diff))
+            else:
+                break
 
-
+            ax.axhline(.25, linestyle="--", color="grey")
+            ax.axhline(.75, linestyle="--", color="grey")
             ax.set_xscale("log")
 
         plt.tight_layout()
@@ -124,6 +128,7 @@ class Analyser:
                 ax.set_title(f"$H = 10 v 100$", fontsize = 10)
             elif i == 7:
                 attraction_fig.colorbar(c, ax = ax)
+                continue
             else:
                 #attractiveness maps, upper row
                 ax.pcolor(longrange_probabilities, coherences, attractionmaps[i].T[:-1,:-1], vmin = np.min(comb_attr), vmax = np.max(comb_attr),cmap = "viridis")
@@ -133,20 +138,32 @@ class Analyser:
 
             ax.set_yticks([0, .5, 1])
 
+            ax.axhline(.25, linestyle="--", color="grey")
+            ax.axhline(.75, linestyle="--", color="grey")
 
         plt.tight_layout()
         print("plotting attractiveness difference curves..")
         attraction_fig, attraction_ax = plt.subplots(nrows = 1, ncols = 1, figsize=(2.6, 3.0))
         attraction_fig.canvas.manager.set_window_title('Attractiveness difference curves')
 
-        attraction_ax.errorbar(np.mean(attraction_diff, axis = 1), coherences, xerr=stats.sem(attraction_diff, axis = 1), fmt=".-", color = "#1C9E77")
+        attraction_ax.errorbar(np.mean(attraction_diff, axis = 1), coherences, xerr=stats.sem(attraction_diff, axis = 1), fmt=".-", color = "#1C9E77", label = "$H = 10 v 50$")
 
         attraction_diff = attractionmaps[0].T - attractionmaps[2].T
-        attraction_ax.errorbar(np.mean(attraction_diff, axis = 1),coherences, xerr=stats.sem(attraction_diff, axis = 1), fmt=".--", color = "#E33237")
+        attraction_ax.errorbar(np.mean(attraction_diff, axis = 1),coherences, xerr=stats.sem(attraction_diff, axis = 1), fmt=".--", color = "#E33237", label = "$H = 10 v 100$")
 
         attraction_ax.set_xticks([-3, 0, 1])
+
         attraction_ax.set_yticks([0, .25, .5, .75, 1])
         attraction_ax.invert_xaxis()
+        attraction_ax.legend(loc="upper right")
+        attraction_ax.set_xlabel("attractiveness diff")
+        attraction_ax.set_ylabel("synchrony, $r$")
+
+        attraction_ax.axhline(.25, linestyle="--", color="grey")
+        attraction_ax.axhline(.75, linestyle="--", color="grey")
+
+        attraction_ax.axvline(0, color="black")
+
 
         plt.tight_layout()
         plt.show()
