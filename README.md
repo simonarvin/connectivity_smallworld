@@ -75,6 +75,18 @@ Alternatively, see [the requisites list](#requisites).
 
 ```python kuramoto/kuramoto_analysis.py```
 
+- *Reproduce Kuramoto stability/attraction data:*
+
+```python kuramoto/kuramoto_simulation_stability.py```
+
+- *Reproduce Kuramoto stability/attraction figures:*
+
+```python kuramoto/kuramoto_analysis_stability.py```
+
+- *Reproduce Kuramoto predictive power graph (**S1**):*
+
+```python kuramoto/kuramoto_analysis_PPS.py```
+
 ----
 
 ## Requisites:
