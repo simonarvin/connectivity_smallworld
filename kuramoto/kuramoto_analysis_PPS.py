@@ -14,8 +14,7 @@ import sys
 sys.path.insert(0,'../small_world')
 import msg_
 
-
-print(f"This script computes the predictive power for diverse network configurations")
+print(f"This script computes the predictive power and dominance parameters for diverse network configurations")
 print("and reproduces Figure S1")
 print("")
 
@@ -40,9 +39,9 @@ class Analyser:
                 self.lines.append(js)
 
     def plot(self):
-        fig_metastability, ax_metastability = plt.subplots(nrows = 1, ncols = 1, figsize=(2, 2))
+        fig_metastability, ax_metastability = plt.subplots(nrows = 1, ncols = 1, figsize=(3, 3))
 
-        fig_metastability.canvas.manager.set_window_title('metastability')
+        fig_metastability.canvas.manager.set_window_title('Predictive power (S1)')
 
         coherence = [[np.mean(coh[-1000:]) for coh in entry["phase_cohs"]] for entry in self.lines]
         raw_coherence = [[coh[-1500:] for coh in entry["phase_cohs"]] for entry in self.lines]
@@ -62,7 +61,7 @@ class Analyser:
 
         dominance_regression=Dominance(data = pandas_matrix,target = 'r_std',objective=1)
         incr_variable_rsquare = dominance_regression.incremental_rsquare()
-        print(f"\ndominance analysis:\n{incr_variable_rsquare}\n")
+
 
         lower_index = 0
 
@@ -76,9 +75,6 @@ class Analyser:
 
                     index += 1
 
-                    #compute mean curve
-                    x, y = np.mean(longs, axis = 1)[lower_index:index], np.mean(coherence, axis = 1)[lower_index:index]
-
                     longs_scope = np.array(longs)[lower_index:index,:]
                     coherence_scope =  np.array(coherence)[lower_index:index,:]
                     raw_coherence_scope =  np.array(raw_coherence)[lower_index:index,:,:]
@@ -89,8 +85,7 @@ class Analyser:
                     df["r"] = coherence_scope.flatten() #y
                     predictive_score = pps.score(df, "g", "r")
 
-                    print(f"\npredictive score: {predictive_score['ppscore']}\n")
-
+                    #print(f"\npredictive score: {predictive_score['ppscore']}\n")
 
                     lower_index = index
 
@@ -99,12 +94,10 @@ class Analyser:
 
             except: #catch last plot:
 
-                x, y = np.mean(longs, axis = 1)[lower_index:], np.mean(coherence, axis = 1)[lower_index:]
 
                 longs_scope = np.array(longs)[lower_index:,:]
                 coherence_scope =  np.array(coherence)[lower_index:,:]
                 raw_coherence_scope =  np.array(raw_coherence)[lower_index:,:,:]
-
 
                 #compute the predictive score of long-range connectivity g on network synchrony r
                 df = pd.DataFrame()
@@ -112,24 +105,31 @@ class Analyser:
                 df["r"] = coherence_scope.flatten() #y
                 predictive_score = pps.score(df, "g", "r")
 
-                print(f"\npredictive score: {predictive_score['ppscore']}\n")
+                #print(f"\npredictive score: {predictive_score['ppscore']}\n")
 
                 gs.append(short)
                 pps_.append(predictive_score['ppscore'])
 
         pps_ = [x for _, x in sorted(zip(gs, pps_), key=lambda pair: pair[0])]
         gs.sort()
-        print(gs)
+
+        print("fitting and plotting predictive power..")
 
         slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(gs, pps_)
-        print("PPS linear fit: ")
-        print(slope, intercept, r_value, p_value)
+        print("PPS linear fit:")
+        print(f"y = ax + b\ny=PPS | x=H\na={slope}\nb={intercept}\nR2={r_value} | P={p_value}")
 
         ax_metastability.plot(np.linspace(0, -intercept/slope, 50), linfunc(np.linspace(0, -intercept/slope, 50), slope, intercept),"--", color="#F98E23")
         ax_metastability.scatter(gs, pps_, color="#F98E23", s=4)
 
         ax_metastability.set_ylim(0,1)
         ax_metastability.set_xscale("log")
+        ax_metastability.set_xlabel("short-range connectivity, $H$")
+        ax_metastability.set_ylabel("predictive power, $PPS$")
+        plt.tight_layout()
+        print("")
+        print("DOMINANCE ANALYSIS:")
+        print(incr_variable_rsquare)
         plt.show()
 
 
