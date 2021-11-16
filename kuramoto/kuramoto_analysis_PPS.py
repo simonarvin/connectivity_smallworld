@@ -50,6 +50,8 @@ class Analyser:
         #longs = [np.mean(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
         longs = [np.array(entry["longrange_connections_arr"])/entry["nodes"] for entry in self.lines]
         shorts = [entry["shortrange_pernode"] for entry in self.lines]
+
+
         #print(np.unique(shorts))
 
         #check dominance of variables g, h and r onto the metastability r_std
@@ -67,7 +69,7 @@ class Analyser:
         pps_ = []
 
         for index, short in enumerate(shorts):
-            
+
             try:
                 if short != shorts[index + 1]:
 
@@ -124,6 +126,7 @@ class Analyser:
 
         ax_metastability.plot(np.linspace(0, -intercept/slope, 50), linfunc(np.linspace(0, -intercept/slope, 50), slope, intercept),"--", color="#F98E23")
         ax_metastability.scatter(gs, pps_, color="#F98E23", s=4)
+        
         ax_metastability.set_ylim(0,1)
         ax_metastability.set_xscale("log")
         plt.show()
