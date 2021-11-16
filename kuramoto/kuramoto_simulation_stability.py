@@ -6,6 +6,7 @@ import time
 import pathlib
 
 sys.path.insert(0,'../small_world')
+import msg_
 import nx_funcs
 import networkx as nx
 from kuramoto import Kuramoto
@@ -42,6 +43,9 @@ except:
     start_at_coupling = 0
     c_set = False
 
+
+print(f"This script reproduces the stability/attractiveness data for small-world Kuramoto networks")
+print("")
 
 #instantiate graph parameters
 nodes = 1000

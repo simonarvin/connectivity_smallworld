@@ -10,6 +10,10 @@ import pandas as pd
 from dominance_analysis import Dominance
 
 import pathlib
+import msg_
+
+print(f"This script analyzes and plots the small-world topological data")
+print("")
 
 base_path = f"{pathlib.Path(__file__).parent.absolute()}/data"
 

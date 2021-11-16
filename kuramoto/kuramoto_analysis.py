@@ -11,6 +11,11 @@ from dominance_analysis import Dominance
 
 import pathlib
 import sys
+sys.path.insert(0,'../small_world')
+import msg_
+
+print(f"This script analyzes and plots the synchronizability of Kuramoto small-world graphs")
+print("")
 
 try:
     if "." in sys.argv[1]:

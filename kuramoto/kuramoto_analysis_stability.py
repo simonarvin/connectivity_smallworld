@@ -1,9 +1,21 @@
+import sys
+sys.path.insert(0,'../small_world')
+import msg_
+
 import json
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 from scipy import stats
 import pathlib
+
+
+longrange_probabilities = np.logspace(np.log10(0.0001), np.log10(1), 9)
+coherences = np.flip(np.linspace(0, 1, 10))
+shortranges = [5, 25, 50]
+
+print(f"This script analyzes and plots the stability of varying network configurations")
+print("")
 
 data_name = f"sw_kuramoto_stability"
 base_path = f"{pathlib.Path(__file__).parent.absolute()}/data"
@@ -27,17 +39,13 @@ class Analyser:
         fig_stability, axs = plt.subplots(nrows = 2, ncols = 4, figsize=(2 * 4, 2*2), sharey=True, sharex=True)
         fig_stability.canvas.manager.set_window_title('Stability maps')
 
-        longrange_probabilities = np.logspace(np.log10(0.0001), np.log10(1), 9)
-        coherences = np.flip(np.linspace(0, 1, 10))
-        shortranges = [5, 25, 50]
-
         heatmap = np.zeros((len(longrange_probabilities), len(coherences)), dtype=np.float64)
         attractionmaps = [heatmap.copy(), heatmap.copy(),heatmap.copy()]
         heatmaps = [heatmap.copy(), heatmap.copy(),heatmap.copy()] #* len(shortranges)
 
         end_step = -1
 
-        print(f"computing stability and attractiveness,\nend_step dt = {np.array(self.lines[0]['phase_cohs']).T.shape[0] + end_step}")
+        print(f"computing stability and attractiveness,\nend_step dt = {np.array(self.lines[0]['phase_cohs']).T.shape[0] + end_step + 1}")
 
         for entry in self.lines:
 

@@ -4,9 +4,13 @@ import json
 import sys
 import time
 import nx_funcs
+import msg_
 
 import pathlib
 base_path = f"{pathlib.Path(__file__).parent.absolute()}/data"
+
+print(f"This script reproduces the small-world topological data")
+print("")
 
 def C_L(G, type = 0):
     """

@@ -11,14 +11,15 @@ import scipy
 
 import pathlib
 import sys
+sys.path.insert(0,'../small_world')
+import msg_
 
-try:
-    if "." in sys.argv[1]:
-        coupling = float(sys.argv[1])
-    else:
-        coupling = int(sys.argv[1])
-except:
-    coupling = 3 #Kuramoto's coupling parameter. Data-set includes couplings = [1, 2, 2.5, 3, 4]
+
+print(f"This script computes the predictive power for diverse network configurations")
+print("and reproduces Figure S1")
+print("")
+
+coupling = 3
 
 print(f"coupling: {coupling}")
 data_name = f"sw_kuramoto_coupling{coupling}_suppl"
@@ -126,7 +127,7 @@ class Analyser:
 
         ax_metastability.plot(np.linspace(0, -intercept/slope, 50), linfunc(np.linspace(0, -intercept/slope, 50), slope, intercept),"--", color="#F98E23")
         ax_metastability.scatter(gs, pps_, color="#F98E23", s=4)
-        
+
         ax_metastability.set_ylim(0,1)
         ax_metastability.set_xscale("log")
         plt.show()

@@ -9,6 +9,10 @@ sys.path.insert(0,'./small_world')
 import nx_funcs
 import networkx as nx
 from kuramoto import Kuramoto
+import msg_
+
+print(f"This script reproduces the synchronizability data for small-world Kuramoto networks")
+print("")
 
 def kuramoto(G, coupling):
 
