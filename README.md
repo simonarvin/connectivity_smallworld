@@ -18,7 +18,7 @@ Simon Arvin, sarv@dandrite.au.dk
 
 Keisuke Yonehara, keisuke.yonehara@dandrite.au.dk
 
-**doi:** TBA
+**doi:** [10.3389/fncom.2021.783474](10.3389/fncom.2021.783474)
 
 ----
 
